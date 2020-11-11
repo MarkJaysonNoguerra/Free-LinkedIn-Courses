@@ -1,0 +1,7 @@
+React note
+
+	four different types of react apps
+		- Create React App - Spa
+		- Next.js          - serverside rendering
+		- Gatsby           - static oriented sites
+		- React Native with Expo - for native mobile apps 
