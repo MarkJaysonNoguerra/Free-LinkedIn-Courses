@@ -1,0 +1,199 @@
+Docker flow 
+	- image -> container
+	- container -> image
+
+
+Volumes 
+	- Persistent (permanent
+	- Ephemeral (not permanent)
+
+Docker has a feature for sharing data (like shared folder)
+	- between container
+	- between host
+
+Docker Registries 
+	- docker images are retrieved from registries 
+	- you can all so add images to the registries
+	- you can all so run your own registries
+
+DockerFile commands 
+	- FROM
+	- RUN
+	- ADD 
+	- CMD 
+	- MAINTAINER
+	- ENTRYPOINT
+	- EXPOSE
+	- VOLUME (shared volume or Ephemeral volume)
+	- WORKDIR
+	- USER
+	- COPY
+
+Avoid golden images
+	* Prevent the Golden Image Problem
+		- include installer in your project
+		- have a canonical build that builds everything completely from scractch
+		- Tag your build with git hash of the code that built it 
+		- Use small base images, such as Alphine
+		- Build images you shared publicly from Dockerfiles, always 
+	 	- Don't ever leave passwords in layers; delete files in the same step!
+	
+What Kernels Do 
+	- Runs directly on the hardware
+	- Responds to message from the hardware
+	- Start and schedule  programs
+	- Control and organize storage 
+	- Pass messages between programs 
+	- Allocate resources, memory, CPU, network, and so on.
+
+What Docker Do
+	- Program written in Go--an upcoming systems language
+	- Manage kernel features 
+		Uses "cgroups" to contain processes
+		Uses "namespaces" to contain networks
+		Uses "copy-on-write" filesystems to build images
+	- Used for years before Docker 
+
+What Docker Really Does 
+	- Makes scripting distributed systems "easy"*
+		*For a very peculiar definitio of "easy"
+
+The Docker Control Socket 
+	- Docker is two programs: a client and a server 
+	- The server receives commands over a socket (either over a network or through a "file")
+	- The client can even run inside docker itself
+
+Networking in Brief
+	- Ethernet: moves "frames" on a wire (or Wi-Fi)
+	- IP layer : moves packets on a local network
+	- Routing: forwards packets between networks
+	- Ports: address particular programs on a computer
+	
+Briging
+	- Docker uses bridges to create virtual networks in your computer
+	- These are software switches
+	- They control the Ethernet layer
+	- You can turn off this protection with 
+		docker run --net=host options image-name command
+
+Routing 
+	- Creates "firewall" rules to move packets between networks
+	- NAT (Network Address Translation)
+	- Change the source address on the way out
+	- Change the destination address on the way back in
+	- sudo iptables -n -L -t nat
+	- "Exposing" a port--really "port forwarding" 
+
+Namespaces 
+	- They allow processes to be attached to private network segments
+	- These private networks are bridged into a shared network with the
+	  rest of the containers
+	- containers get their own copy of the networking stack 
+
+Primer on Linux Processes
+	- Processes come from other processes--parent-child relationship
+	- When a child process exits, it returns an exit code to its parent
+	- Process Zero is special: called init the process that starts the rest 
+	- In Docker, your container starts with an init process and vanishes when the process exits
+	
+Resource Limiting 
+	- Scheduling CPU time
+	- Memory allocation limits
+	- Inherited limitations and quotas
+	- Can't escape your limits by starting more processes
+	
+
+Unix Storage in Brief
+	- Actual storage devices 
+	- Logical storage devices 
+	- Filesystems
+	- FUSE filesystems and network filesystems
+
+The Secret of Docker: COWs
+	- COWs = copy-on-write
+
+Moving Cows 
+	- The contents of layers are moved between containers in gqip files
+	- Containers are independent of the storage engine
+	- Any container can be loaded (almost) anywhere
+	- It is possible to run out of layers on some of the storage engines
+	
+Volumes and Bind Mounting
+	- The Linux VFS (Virtual File System)
+	- Mounting devices on the VFS
+	- Mounting directors on the VFS
+	- Getting the mount order correct
+	- Mounting volumes--always mounts the host's filesystem over the guest
+
+What is a Docker Registry
+	- Is a program
+	- Stores layers and images
+	- Listens on (usually) port 5000
+	- Maintains an index and searches tags
+	- Authorizes and autheticates connections (sometimes)
+
+Popular Docker Registry Programs
+	- The official Python Docker Registry
+	- Nexus
+
+Running the Docker Registry in Docker 
+	- Docker makes installing network services (reasonably) easy.
+	- The registry is a Docker service
+	- The registry is a Docker service.
+
+Storage Options (for your registry)
+	- Local storage
+	- Docker Trusted Registry
+	- Amazon ECS
+	- Google cloud container-registry
+	- Azure container-registry
+	- Using (docker save && docker load)
+
+One Container = One Hand Clapping
+	- Many orchestrations systems for Docker 
+	- Start containers-- and restart them if they fail
+	- Service discovery-- allow them to find each other
+	- Resource allocation--match containers to computers
+
+Docker Compose 
+	- Single machine coordination
+	- Designed for testing and development
+	- Brings up all your containers, volumes, network, etc, with one command
+	
+Kubernetes (contains)
+	- Containers run programs.
+	- Pods group containers together
+	- Services make pods available to others.
+ 	- Labels are used for very advanced service discovery.
+
+Advantages of Kubernetes
+	- Makes scripting large operations possible with the kubectl command
+	- Very flexible overlay networking
+	- Runs equally well on your hardware or a cloud provider
+	- Built-in service discovery
+	- Get started at http://kubernetes.io/
+
+EC2 Continer Service (ECS) - like Kubernetes
+	- Task definitions
+		Define a set of containers that always run together (like pods from kubs)
+	- Tasks 
+		Actually makes a container run right now
+	- Services and exposes it to the Net
+		Ensures that a task is running all the time
+
+Advantages of ECS
+	- Connects load balancer (ELBs) to services
+	- Can create your own host instances in AWS
+	- Make your instances start with the agent and join the cluster
+	- Pass the docker control socket into the agent
+	- Provides docker repos-- and it's easy to run your own repo
+	- Note that containers (tasks) can be part of CloudFormations stacks!
+	- Get started at https://aws.amazon.com/ecs/
+
+Another option for orchestration
+	- AWS Fargate
+	- Docker swarm
+	- Google kubernetes engine
+	- Azure Kubernetes Service (AKS)
+
+	
