@@ -1,0 +1,75 @@
+All AWS Categories
+	- Compute
+	- Management Tools
+	- Mobile Services
+	- Storage
+	- Media Service
+	- Application Integration
+	- Database
+	- Machine Learning
+	- Customer Engagment
+	- Migration
+	- Business Productivity
+	- Networking & Content Delivery
+	- Desktop & App Streaming 
+	- IoT
+	- Analytics
+	- Developer Tools
+	- Security, Identity & Compliance
+	- Game Development
+
+
+Security 
+	- IAM (Identity and Access Management )
+	- Groups
+	- Roles 
+	- Policies
+
+Cognito 
+	- Amazon Cognito offers user pools and identity pools. Users pools are user directories that provide sign-up
+	  and sign-in options for your app users. Identity pools provide AWS credentials to grant your users access
+	  to other AWS services.
+	- Identity pools = Allow users (logged in or not depending on the pool to access AWS services (for example:S3)
+	
+
+S3
+	- storage 
+
+DynamoDb
+	- non relational database
+
+lambda 
+	- serverless function
+
+
+SQS
+	- messaging queue
+
+Step Functions 
+	- Based on concepts of taks and state machines
+	- Task -> code (Lambda) or activity (waits for operator to perform something)
+
+State Machines 
+	- States, their relationships, and input/output
+	- Amazon States Language
+	- States make decisions based on input, perform actions, and pass output to other states
+
+Step Function Examples (sample usage)
+	- Syncing/backing up S3 buckets
+	- Email verification/confirmation/authorization process
+	- Scaling image automation
+
+Elastic Beanstalk
+	- Deploy and scale web apps and services
+	- Supports Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker
+	- On servers such as Apache, NGINX, Passenger, and IIS
+	- Amazon Elastic Compute Cloud (EC2): VM instance running Amazon Linux or Microsoft Windows Server configured for
+	  web apps
+	- Security group: EC2 security configuration for port 80 HTTP ingress only (needs VPC and doesn't create it)
+	- Auto Scaling group: configured to replace an instance if terminated or unavailable
+	- S3 bucket: for source code, logs, and other artifacts created for Elastic Beanstalk needs
+	- CloudWatch alarms: to monitor load and triggers
+	- Domain name: routes your web app subdomain.region.elasticbeanstalk.com
+
+ElastiCache
+	- Cache service
