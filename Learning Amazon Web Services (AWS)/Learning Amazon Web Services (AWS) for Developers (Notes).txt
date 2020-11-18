@@ -73,3 +73,20 @@ Elastic Beanstalk
 
 ElastiCache
 	- Cache service
+
+CloudFront 
+	- Global content delivery network (CDN)
+	- Securely and quickly delivers data, video, applications, and API
+	- Global network of edge locations and regional edge caches
+	- Ensures that end-user requests are served by the closest edge location: Shorter distance = High performance
+	-  Not cached? Persistent connections to origin servers for fast fetching
+
+CloudWatch 
+	- AWS monitoring and management service
+	- Provides data and actionable insights to determine health
+	- Logs, metrics, and events
+	- Create "high-resolution" alarms and automated actions
+	- Monitor your costs
+	- Monitor S3 buckets
+	- Many, many more
+
