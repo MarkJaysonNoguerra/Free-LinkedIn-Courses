@@ -1,0 +1,31 @@
+Node
+
+* async
+* sync 
+
+sample of node package management
+	- npm 
+
+Web Frameworks for Node
+	- Express
+		- Tried and tested
+		- Runs within Node.js, and is just on the backend
+		- Is well-supported and well-documented
+		- Uses more traditional development features
+		-
+	- Sails
+		Feature rich
+	- Koa 
+		Most modern 
+	
+Web API 
+	- Service that Allows you to get and save data to a server or backend
+
+
+Socket 
+	- Socket.io
+		- Socket.io enables real time, bidirectional, event based communication.
+
+Example of library for testing in node 
+	- jasmine
+
